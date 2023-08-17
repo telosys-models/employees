@@ -1,0 +1,10 @@
+// Entity Message
+
+Message {
+  id : long { @Id 
+       @GeneratedValue(IDENTITY) // OK
+       // @GeneratedValue(AUTO) // OK
+       };
+  
+  text : string ;
+}

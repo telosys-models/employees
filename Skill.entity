@@ -1,0 +1,11 @@
+
+@DbTable("SKILLS")
+Skill {
+  id   : long    { @Id };  
+  name : string { @NotNull @NotBlank } ;
+
+//  employees : Employee[] { @ManyToMany @MappedBy(skills) @FetchTypeEager }; 
+  employees : Employee[] { @ManyToMany @LinkByJoinEntity(EmpSkill) @FetchTypeEager }; 
+
+}
+

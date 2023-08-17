@@ -1,0 +1,8 @@
+
+@DbTable("BUSINESS_UNITS")
+BusinessUnit {
+	code : string { @Id @MinLen(3) @MaxLen(3) @NotNull }; 
+	name : string { @Size(20) } ;
+	
+	employees : Employee[] ; 
+}

@@ -1,0 +1,28 @@
+// Entity Employee
+@DbTable("EMPLOYEES")
+#MyEntityTag
+Employee 
+{ 
+	// Id / Primary Key attribute(s) :
+	id : int { @Id  @AutoIncremented };
+	// Other attribute(s) :
+	firstName : string { @MinLen(1) @MaxLen(40) @DefaultValue("-") #Format(1)  } ;
+	lastName  : string { @MinLen(1) @MaxLen(40) @NotBlank #ToUpperCase #Format(1) } ;
+	birthDate : date   { @Past  @NotNull @DbDefaultValue( "statement_timestamp()") } ;
+	manager   : boolean  ;
+	// Foreign Key attribute(s) :
+	badgeId     : int    { @FK(Badge) } ;
+	companyId   : int    { @FK(FK_EMP_COMPANY, Company) } ;
+	buCode      : string { @FK(BusinessUnit) } ;
+	
+	// link "to one" based on FK (FK inference)
+	company : Company ; 
+
+	// link "to one" based on FK (FK inference) with lazy loading
+	badge   : Badge  { @FetchTypeLazy @Optional } ;  
+
+	// link "many to many" based on a "Join Entity" 
+	skills : Skill[] { @ManyToMany @LinkByJoinEntity(EmpSkill) @FetchTypeLazy}; 
+}
+
+ 

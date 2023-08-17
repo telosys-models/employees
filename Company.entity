@@ -1,0 +1,10 @@
+// Entity Company
+
+Company {
+  id : int {@Id @NotNull}  ; 
+  name : string { @MaxLen(20) @DbDefaultValue( 'N'::bpchar) } ; 
+
+  countryCode : short { @FK(Country) };
+
+  country : Country ; // infer from FK
+}

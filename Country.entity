@@ -1,0 +1,11 @@
+
+// Countries with ISO codes as described in the ISO 3166 international standard.
+// ( see : https://www.iban.com/country-codes ) 
+@DbTable("COUNTRIES")
+@InMemoryRepository // All the countries are supposed to be stored in memory
+Country {
+    isoNumCode    : short {  @Id  @Min(4) @Max(894) @NotNull }; // ISO num code
+    isoAlpha2Code : string { @NotNull @MinLen(2) @MaxLen(2)  } ; // eg "FR"
+    isoAlpha3Code : string { @NotNull @MinLen(3) @MaxLen(3) } ; // eg "FRA"
+    name : string;
+}

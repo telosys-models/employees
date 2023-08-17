@@ -1,0 +1,7 @@
+// Entity Subject
+
+Subject {
+  id : int { @Id } ;
+  title : string ;
+  description : string ;
+}

@@ -1,0 +1,9 @@
+
+@DbTable("EMP_SKILL") // JOIN TABLE
+@JoinEntity
+EmpSkill 
+{ 
+  empId   : int  { @Id @FK(Employee) @DbName(EMP_ID) };
+  skillId : long { @Id @FK(Skill) @DbName(SKILL_ID)};    
+}
+

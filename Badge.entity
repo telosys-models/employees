@@ -1,0 +1,9 @@
+
+@DbTable("BADGES")
+Badge {
+  id   : int    { @Id @Label("Badge Id" ) @DbDefaultValue(0) };  
+  name : string { @NotNull @NotBlank } ;
+
+  employee : Employee  ;
+}
+

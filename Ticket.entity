@@ -1,0 +1,37 @@
+// Entity Ticket
+
+Ticket {
+  id : long { @Id //@AutoIncremented 
+		// @GeneratedValue(AUTO)
+
+		// @GeneratedValue(IDENTITY)
+
+		// Syntax: @GeneratedValue(SEQUENCE, sequenceName [, allocationSize [, initialValue ] ] )
+		// @GeneratedValue(SEQUENCE, "Ticket_Gen") 
+		@GeneratedValue(SEQUENCE, "Ticket_Gen", 10) 
+		// @GeneratedValue(SEQUENCE, "Ticket_Gen", 10, 200)
+		
+		// Syntax: @GeneratedValue(TABLE, pkValueId [, allocationSize [, initialValue ] ] ) 
+		// @GeneratedValue(TABLE, "TICKET_ID" )
+		// @GeneratedValue(TABLE, "TICKET_ID", 10 )
+		// @GeneratedValue(TABLE, "TICKET_ID", 10, 45000 )
+		};
+
+  message : string ;
+
+  empId : int ;
+  employee : Employee { @LinkByAttr(empId) 
+		// @Cascade // '@Cascade' : parameter required
+		// @Cascade( ) //   '@Cascade( )' : parameter required
+		// @Cascade(xxx) //  @Cascade : invalid cascade option 'xxx'
+		// @Cascade(MERGE) // OK
+		// @Cascade(M) // OK
+		// @Cascade(MERGE, REMOVE) // OK
+		// @Cascade(ALL,MERGE,  REMOVE  ) // OK
+		// @Cascade(ALL,MERGE,  REM ) // OK
+		};
+  
+  
+  subjectId : int { @FK(FK_TICKET_SUBJECT, Subject) } ;
+  subject   : Subject { @LinkByFK(FK_TICKET_SUBJECT) @Cascade(REMOVE) };
+}
